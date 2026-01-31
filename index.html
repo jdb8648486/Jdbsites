@@ -1,0 +1,1143 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JDB SITES | Desenvolvimento Web Futurista</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&family=Inter:wght@300;400;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- FontAwesome -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  />
+
+  <style>
+    /* ===== BASE ===== */
+    :root {
+      --bg-dark: #050510;
+      --bg-card: rgba(255, 255, 255, 0.05);
+      --primary-cyan: #00f3ff;
+      --primary-purple: #bc13fe;
+      --text-main: #ffffff;
+      --text-muted: #a0a0b0;
+      --font-headings: 'Orbitron', sans-serif;
+      --font-tech: 'Rajdhani', sans-serif;
+      --font-body: 'Inter', sans-serif;
+      --transition: all 0.3s ease;
+      --glass-border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      line-height: 1.6;
+      overflow-x: hidden;
+      background-image:
+        radial-gradient(circle at 10% 20%, rgba(188, 19, 254, 0.1) 0%, transparent 20%),
+        radial-gradient(circle at 90% 80%, rgba(0, 243, 255, 0.1) 0%, transparent 20%);
+      background-attachment: fixed;
+      position: relative;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: var(--font-headings);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .gradient-text {
+      background: linear-gradient(90deg, var(--primary-cyan), var(--primary-purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      position: relative;
+      display: inline-block;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 60%;
+      height: 3px;
+      background: var(--primary-cyan);
+      margin: 10px auto 0;
+      box-shadow: 0 0 10px var(--primary-cyan);
+    }
+
+    .section-subtitle {
+      text-align: center;
+      color: var(--text-muted);
+      font-family: var(--font-tech);
+      font-size: 1.2rem;
+      margin-bottom: 3rem;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* ===== BOTÕES (CORRIGIDO) =====
+       NÃO estiliza todos os <a>. Somente:
+       - .btn (qualquer elemento com .btn)
+       - a.btn (links com classe btn)
+       - button.btn
+    */
+    .btn, a.btn, button.btn {
+      display: inline-block;
+      padding: 12px 30px;
+      font-family: var(--font-headings);
+      font-weight: 700;
+      text-decoration: none;
+      border-radius: 6px;
+      transition: var(--transition);
+      cursor: pointer;
+      border: none;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 0.9rem;
+      position: relative;
+      pointer-events: auto;
+    }
+
+    .btn-primary {
+      background: transparent;
+      color: var(--primary-cyan);
+      border: 1px solid var(--primary-cyan);
+      box-shadow: 0 0 5px rgba(0, 243, 255, 0.2);
+    }
+    .btn-primary:hover {
+      background: var(--primary-cyan);
+      color: #000;
+      box-shadow: 0 0 20px rgba(0, 243, 255, 0.6);
+    }
+
+    .btn-secondary {
+      background: rgba(188, 19, 254, 0.1);
+      color: var(--text-main);
+      border: 1px solid var(--primary-purple);
+    }
+    .btn-secondary:hover {
+      background: var(--primary-purple);
+      color: #fff;
+      box-shadow: 0 0 20px rgba(188, 19, 254, 0.6);
+    }
+
+    /* ===== NAVBAR ===== */
+    .navbar {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(5, 5, 16, 0.98);
+      border-bottom: var(--glass-border);
+      padding: 15px 0;
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      pointer-events: auto;
+    }
+
+    .logo {
+      font-family: var(--font-headings);
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: var(--text-main);
+      text-decoration: none;
+      text-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
+      padding: 6px 0;
+    }
+    .logo span { color: var(--primary-cyan); }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 30px;
+    }
+    .nav-links a {
+      color: var(--text-main);
+      text-decoration: none;
+      font-family: var(--font-tech);
+      font-weight: 500;
+      font-size: 1.1rem;
+      transition: var(--transition);
+      padding: 6px 0;
+      display: inline-block;
+    }
+    .nav-links a:hover { color: var(--primary-cyan); }
+
+    .menu-toggle {
+      display: none;
+      color: var(--text-main);
+      font-size: 1.5rem;
+      cursor: pointer;
+      border: none;
+      background: none;
+      padding: 8px;
+    }
+
+    /* ===== HERO ===== */
+    #hero {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+      padding-top: 70px;
+    }
+
+    .hero-bg-anim {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 0;
+      pointer-events: none;
+      background: linear-gradient(45deg, #050510, #1a1a2e, #050510);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+    }
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .hero-content {
+      z-index: 1;
+      padding: 20px;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 1s forwards 0.5s;
+    }
+    @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+
+    .hero-title {
+      font-size: 3.5rem;
+      margin-bottom: 20px;
+      line-height: 1.2;
+      text-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+    }
+
+    .hero-subtitle {
+      font-size: 1.3rem;
+      color: var(--text-muted);
+      margin-bottom: 40px;
+      font-family: var(--font-tech);
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* ===== SECTIONS ===== */
+    section {
+      padding: 100px 0;
+      position: relative;
+      z-index: 2;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease-out;
+    }
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ===== SERVICES ===== */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+    .service-card {
+      background: var(--bg-card);
+      border: var(--glass-border);
+      padding: 40px 30px;
+      border-radius: 12px;
+      transition: var(--transition);
+      text-align: center;
+    }
+    .service-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      border-color: var(--primary-cyan);
+    }
+    .service-icon { font-size: 3rem; color: var(--primary-cyan); margin-bottom: 20px; }
+    .service-card h3 { margin-bottom: 15px; font-size: 1.4rem; }
+    .service-card p { color: var(--text-muted); font-size: 0.95rem; }
+
+    /* ===== PORTFOLIO ===== */
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 30px;
+    }
+    .portfolio-card {
+      background: var(--bg-card);
+      border: var(--glass-border);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+    }
+    .portfolio-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 15px rgba(188, 19, 254, 0.2);
+      border-color: var(--primary-purple);
+    }
+    .portfolio-img-wrapper {
+      width: 100%;
+      height: 200px;
+      overflow: hidden;
+      position: relative;
+      pointer-events: none;
+    }
+    .portfolio-img-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    .portfolio-card:hover .portfolio-img-wrapper img { transform: scale(1.1); }
+
+    .portfolio-content {
+      padding: 20px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .portfolio-content h4 {
+      color: var(--primary-cyan);
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+    }
+    .portfolio-content p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 15px;
+      flex-grow: 1;
+    }
+
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 15px; }
+    .chip {
+      font-size: 0.75rem;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 4px 10px;
+      border-radius: 999px;
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* ===== TESTIMONIALS ===== */
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+    .testimonial-card {
+      background: linear-gradient(145deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.01) 100%);
+      padding: 30px;
+      border-radius: 12px;
+      border: var(--glass-border);
+      position: relative;
+    }
+    .testimonial-card i.quote-icon {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      font-size: 2rem;
+      color: rgba(255, 255, 255, 0.1);
+    }
+    .stars { color: #ffd700; margin-bottom: 15px; font-size: 0.9rem; }
+    .client-name {
+      display: block;
+      margin-top: 15px;
+      font-family: var(--font-headings);
+      color: var(--primary-purple);
+      font-size: 1rem;
+    }
+
+    /* ===== PRICING ===== */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      align-items: center;
+    }
+    .pricing-card {
+      background: var(--bg-card);
+      border: var(--glass-border);
+      padding: 40px;
+      border-radius: 12px;
+      text-align: center;
+      transition: var(--transition);
+    }
+    .pricing-card.featured {
+      background: rgba(0, 243, 255, 0.05);
+      border-color: var(--primary-cyan);
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(0, 243, 255, 0.1);
+    }
+    .pricing-card:hover { transform: translateY(-10px) scale(1.05); }
+    .pricing-title { font-family: var(--font-headings); font-size: 1.5rem; margin-bottom: 10px; }
+    .price-placeholder { font-size: 1.2rem; color: var(--primary-cyan); margin-bottom: 30px; font-weight: 600; }
+    .pricing-features { list-style: none; margin-bottom: 30px; text-align: left; }
+    .pricing-features li { margin-bottom: 10px; color: var(--text-muted); }
+    .pricing-features li i { color: var(--primary-purple); margin-right: 10px; }
+
+    /* ===== CONTACT ===== */
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      background: rgba(255, 255, 255, 0.03);
+      padding: 50px;
+      border-radius: 20px;
+      border: var(--glass-border);
+    }
+    .contact-info h3 { margin-bottom: 20px; color: var(--primary-cyan); }
+    .info-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+      font-size: 1.1rem;
+    }
+    .info-item i {
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      margin-right: 15px;
+      color: var(--primary-purple);
+    }
+    .form-group { margin-bottom: 20px; }
+    .form-group label { display: block; margin-bottom: 8px; font-size: 0.9rem; font-weight: 500; }
+    .form-control {
+      width: 100%;
+      padding: 12px;
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 8px;
+      color: #fff;
+      font-family: var(--font-body);
+      transition: var(--transition);
+    }
+    .form-control:focus {
+      outline: none;
+      border-color: var(--primary-cyan);
+      box-shadow: 0 0 10px rgba(0, 243, 255, 0.2);
+    }
+    textarea.form-control { resize: vertical; min-height: 120px; }
+
+    /* ===== FOOTER ===== */
+    footer {
+      padding: 40px 0;
+      text-align: center;
+      border-top: var(--glass-border);
+      background: rgba(0, 0, 0, 0.3);
+      position: relative;
+      z-index: 2;
+    }
+    .footer-logo {
+      font-family: var(--font-headings);
+      font-size: 1.5rem;
+      font-weight: 900;
+      margin-bottom: 20px;
+      display: inline-block;
+    }
+    .social-links { margin-bottom: 20px; }
+    .social-links a {
+      color: var(--text-muted);
+      font-size: 1.2rem;
+      margin: 0 10px;
+      transition: var(--transition);
+      padding: 6px;
+      display: inline-block;
+    }
+    .social-links a:hover { color: var(--primary-cyan); transform: translateY(-3px); }
+    .copyright { color: var(--text-muted); font-size: 0.9rem; }
+
+    /* ===== WHATSAPP (FORÇADO, REDONDO E FLUTUANTE) ===== */
+    .whatsapp-float{
+      position: fixed !important;
+      right: 26px !important;
+      bottom: 40px !important;
+      width: 60px !important;
+      height: 60px !important;
+      border-radius: 50% !important;
+
+      padding: 0 !important;
+      margin: 0 !important;
+
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+
+      background: #25d366 !important;
+      color: #fff !important;
+      text-decoration: none !important;
+
+      z-index: 99999 !important;
+      box-shadow: 2px 2px 10px rgba(0,0,0,0.5) !important;
+      transition: transform 0.2s ease, background 0.2s ease !important;
+    }
+    .whatsapp-float:hover{
+      background: #128c7e !important;
+      transform: scale(1.08) !important;
+    }
+    .whatsapp-float i{
+      font-size: 30px !important;
+      line-height: 1 !important;
+    }
+    @media (max-width: 768px){
+      .whatsapp-float{
+        right: 16px !important;
+        bottom: 18px !important;
+        width: 56px !important;
+        height: 56px !important;
+      }
+      .whatsapp-float i{ font-size: 28px !important; }
+      .hero-title { font-size: 2.2rem; }
+      .contact-layout { grid-template-columns: 1fr; }
+      .pricing-card.featured { transform: scale(1); }
+    }
+
+    /* ===== MODAL ===== */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 10000;
+      left: 0; top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.8);
+    }
+    .modal-content {
+      background-color: #0f0f1f;
+      margin: 10% auto;
+      padding: 30px;
+      border: 1px solid var(--primary-cyan);
+      width: 90%;
+      max-width: 600px;
+      border-radius: 12px;
+      position: relative;
+      box-shadow: 0 0 30px rgba(0, 243, 255, 0.2);
+    }
+    .close-modal {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .close-modal:hover { color: #fff; }
+
+    /* ===== TOAST ===== */
+    #toast {
+      visibility: hidden;
+      min-width: 250px;
+      background-color: var(--primary-cyan);
+      color: #000;
+      text-align: center;
+      border-radius: 6px;
+      padding: 16px;
+      position: fixed;
+      z-index: 10001;
+      left: 50%;
+      bottom: 30px;
+      transform: translateX(-50%);
+      font-weight: 600;
+      box-shadow: 0 0 20px rgba(0, 243, 255, 0.5);
+      pointer-events: none;
+    }
+    #toast.show {
+      visibility: visible;
+      animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    }
+    @keyframes fadein { from { bottom: 0; opacity: 0; } to { bottom: 30px; opacity: 1; } }
+    @keyframes fadeout { from { bottom: 30px; opacity: 1; } to { bottom: 0; opacity: 0; } }
+
+    /* ===== RESPONSIVE MENU ===== */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: rgba(5, 5, 16, 0.98);
+        padding: 20px;
+        text-align: center;
+        border-bottom: 1px solid var(--primary-cyan);
+      }
+      .nav-links.active { display: flex; }
+      .menu-toggle { display: block; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navegação -->
+  <nav class="navbar">
+    <div class="container nav-container">
+      <a href="#hero" class="logo">JDB <span>SITES</span></a>
+
+      <button class="menu-toggle" id="mobile-menu" aria-label="Abrir Menu" type="button">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#hero">Início</a></li>
+        <li><a href="#services">Serviços</a></li>
+        <li><a href="#portfolio">Portfólio</a></li>
+        <li><a href="#testimonials">Depoimentos</a></li>
+        <li><a href="#pricing">Preços</a></li>
+        <li><a href="#contact">Orçamento</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <header id="hero">
+    <div class="hero-bg-anim"></div>
+    <div class="container hero-content">
+      <h1 class="hero-title">Sites Futuristas<br /><span class="gradient-text">Que Convertem</span></h1>
+      <p class="hero-subtitle">Design Premium + Performance para empresas em Curitiba e além.</p>
+      <div class="hero-buttons">
+        <a href="#contact" class="btn btn-primary">Pedir Orçamento</a>
+        <a href="#portfolio" class="btn btn-secondary">Ver Portfólio</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Serviços -->
+  <section id="services">
+    <div class="container">
+      <h2 class="section-title">Nossos Serviços</h2>
+      <p class="section-subtitle">Soluções de próxima geração para sua presença digital</p>
+
+      <div class="services-grid">
+        <div class="service-card reveal">
+          <i class="fas fa-laptop-code service-icon"></i>
+          <h3>Design de Sites Personalizados</h3>
+          <p>Interfaces sob medida criadas para capturar a essência futurista única da sua marca.</p>
+        </div>
+
+        <div class="service-card reveal">
+          <i class="fas fa-rocket service-icon"></i>
+          <h3>Landing Pages</h3>
+          <p>Páginas únicas de alta conversão otimizadas para campanhas de anúncios e metas específicas.</p>
+        </div>
+
+        <div class="service-card reveal">
+          <i class="fas fa-shopping-cart service-icon"></i>
+          <h3>Lojas Virtuais</h3>
+          <p>E-commerces robustos com checkout integrado e gestão de estoque simplificada.</p>
+        </div>
+
+        <div class="service-card reveal">
+          <i class="fas fa-tachometer-alt service-icon"></i>
+          <h3>Otimização de Velocidade e SEO</h3>
+          <p>Otimização técnica para garantir carregamento ultrarrápido e melhores ranqueamentos no Google.</p>
+        </div>
+
+        <div class="service-card reveal">
+          <i class="fas fa-tools service-icon"></i>
+          <h3>Manutenção e Atualizações</h3>
+          <p>Tranquilidade total com patches de segurança regulares, backups e atualizações de conteúdo.</p>
+        </div>
+
+        <div class="service-card reveal">
+          <i class="fas fa-server service-icon"></i>
+          <h3>Consultoria de Hospedagem</h3>
+          <p>Orientação especializada na escolha da melhor infraestrutura para as necessidades do seu site.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Portfólio -->
+  <section id="portfolio">
+    <div class="container">
+      <h2 class="section-title">Trabalhos em Destaque</h2>
+      <p class="section-subtitle">Um vislumbre do nosso universo digital</p>
+
+      <div class="portfolio-grid">
+        <div class="portfolio-card reveal">
+          <div class="portfolio-img-wrapper">
+            <img src="https://picsum.photos/seed/neonrestaurant/600/400" alt="Restaurante Neon" />
+          </div>
+          <div class="portfolio-content">
+            <h4>Landing Page Restaurante Neon</h4>
+            <p>Uma página vibrante, inspirada no cyberpunk, para uma experiência gastronômica de alto padrão.</p>
+            <div class="chips">
+              <span class="chip">Responsivo</span>
+              <span class="chip">Reservas</span>
+            </div>
+            <button type="button" class="btn btn-secondary open-modal-btn">Ver Detalhes</button>
+          </div>
+        </div>
+
+        <div class="portfolio-card reveal">
+          <div class="portfolio-img-wrapper">
+            <img src="https://picsum.photos/seed/techstartup/600/400" alt="Startup Tecnológica" />
+          </div>
+          <div class="portfolio-content">
+            <h4>Homepage Startup Tecnológica</h4>
+            <p>Design minimalista e elegante focando nos recursos do produto SaaS e confiança do usuário.</p>
+            <div class="chips">
+              <span class="chip">SaaS</span>
+              <span class="chip">Formulário de Lead</span>
+            </div>
+            <button type="button" class="btn btn-secondary open-modal-btn">Ver Detalhes</button>
+          </div>
+        </div>
+
+        <div class="portfolio-card reveal">
+          <div class="portfolio-img-wrapper">
+            <img src="https://picsum.photos/seed/realestate/600/400" alt="Imobiliária" />
+          </div>
+          <div class="portfolio-content">
+            <h4>Showcase Imobiliário</h4>
+            <p>Listagens de imóveis imersivas com integração de tours virtuais.</p>
+            <div class="chips">
+              <span class="chip">Galeria</span>
+              <span class="chip">Busca</span>
+            </div>
+            <button type="button" class="btn btn-secondary open-modal-btn">Ver Detalhes</button>
+          </div>
+        </div>
+
+        <div class="portfolio-card reveal">
+          <div class="portfolio-img-wrapper">
+            <img src="https://picsum.photos/seed/fitness/600/400" alt="Academia" />
+          </div>
+          <div class="portfolio-content">
+            <h4>Página Conversão Academia</h4>
+            <p>Design de alta energia impulsionando inscrições de membros.</p>
+            <div class="chips">
+              <span class="chip">Horários</span>
+              <span class="chip">Treinadores</span>
+            </div>
+            <button type="button" class="btn btn-secondary open-modal-btn">Ver Detalhes</button>
+          </div>
+        </div>
+
+        <div class="portfolio-card reveal">
+          <div class="portfolio-img-wrapper">
+            <img src="https://picsum.photos/seed/lawfirm/600/400" alt="Advocacia" />
+          </div>
+          <div class="portfolio-content">
+            <h4>Site Profissional de Advocacia</h4>
+            <p>Layout focado em credibilidade com paleta de cores confiável.</p>
+            <div class="chips">
+              <span class="chip">Profissional</span>
+              <span class="chip">Artigos</span>
+            </div>
+            <button type="button" class="btn btn-secondary open-modal-btn">Ver Detalhes</button>
+          </div>
+        </div>
+
+        <div class="portfolio-card reveal">
+          <div class="portfolio-img-wrapper">
+            <img src="https://picsum.photos/seed/beautysalon/600/400" alt="Salão de Beleza" />
+          </div>
+          <div class="portfolio-content">
+            <h4>Site Agendamento Salão</h4>
+            <p>Interface elegante com agendamento online de compromissos.</p>
+            <div class="chips">
+              <span class="chip">Agendamento</span>
+              <span class="chip">Serviços</span>
+            </div>
+            <button type="button" class="btn btn-secondary open-modal-btn">Ver Detalhes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Depoimentos -->
+  <section id="testimonials">
+    <div class="container">
+      <h2 class="section-title">O que dizem os Clientes</h2>
+      <p class="section-subtitle">O que nossos parceiros dizem sobre nossos resultados</p>
+
+      <div class="testimonial-grid">
+        <div class="testimonial-card reveal">
+          <i class="fas fa-quote-right quote-icon"></i>
+          <div class="stars">★★★★★</div>
+          <p>"A JDB SITES transformou completamente nossa presença online. Os leads aumentaram 40% no primeiro mês. O visual futurista nos diferencia dos concorrentes."</p>
+          <span class="client-name">Mariana S.</span>
+        </div>
+        <div class="testimonial-card reveal">
+          <i class="fas fa-quote-right quote-icon"></i>
+          <div class="stars">★★★★★</div>
+          <p>"Velocidade e atenção aos detalhes incríveis. O site carrega instantaneamente e nossos clientes adoram o novo sistema de agendamento."</p>
+          <span class="client-name">Carlos R.</span>
+        </div>
+        <div class="testimonial-card reveal">
+          <i class="fas fa-quote-right quote-icon"></i>
+          <div class="stars">★★★★★</div>
+          <p>"Profissionais, criativos e tecnicamente experts. Entenderam perfeitamente a visão da nossa marca e entregaram no prazo."</p>
+          <span class="client-name">Fernanda L.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Preços -->
+  <section id="pricing">
+    <div class="container">
+      <h2 class="section-title">Investimento</h2>
+      <p class="section-subtitle">Soluções escaláveis para cada estágio de crescimento</p>
+
+      <div class="pricing-grid">
+        <div class="pricing-card reveal">
+          <h3 class="pricing-title">Inicial</h3>
+          <div class="price-placeholder">Preços a partir de:</div>
+          <ul class="pricing-features">
+            <li><i class="fas fa-check"></i> Site de Página Única</li>
+            <li><i class="fas fa-check"></i> Responsivo para Mobile</li>
+            <li><i class="fas fa-check"></i> Formulário de Contato</li>
+            <li><i class="fas fa-check"></i> Entrega em 1 Semana</li>
+          </ul>
+          <a href="#contact" class="btn btn-secondary">Solicitar Orçamento</a>
+        </div>
+
+        <div class="pricing-card featured reveal">
+          <h3 class="pricing-title" style="color:var(--primary-cyan)">Negócios</h3>
+          <div class="price-placeholder">Preços a partir de:</div>
+          <ul class="pricing-features">
+            <li><i class="fas fa-check"></i> Site Multi-páginas (até 5)</li>
+            <li><i class="fas fa-check"></i> Configuração Básica de SEO</li>
+            <li><i class="fas fa-check"></i> Integração com Redes Sociais</li>
+            <li><i class="fas fa-check"></i> Otimização de Velocidade</li>
+          </ul>
+          <a href="#contact" class="btn btn-primary">Solicitar Orçamento</a>
+        </div>
+
+        <div class="pricing-card reveal">
+          <h3 class="pricing-title">Profissional</h3>
+          <div class="price-placeholder">Preços a partir de:</div>
+          <ul class="pricing-features">
+            <li><i class="fas fa-check"></i> E-commerce ou App Personalizado</li>
+            <li><i class="fas fa-check"></i> SEO Avançado e Analytics</li>
+            <li><i class="fas fa-check"></i> Integração de Pagamentos</li>
+            <li><i class="fas fa-check"></i> Suporte Prioritário</li>
+          </ul>
+          <a href="#contact" class="btn btn-secondary">Solicitar Orçamento</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contato -->
+  <section id="contact">
+    <div class="container">
+      <h2 class="section-title">Inicie seu Projeto</h2>
+      <p class="section-subtitle">Vamos construir algo extraordinário juntos</p>
+
+      <div class="contact-layout reveal">
+        <div class="contact-info">
+          <h3>Entre em Contato</h3>
+
+          <div class="info-item">
+            <i class="fas fa-envelope"></i>
+            <span>jdbsites1@gmail.com</span>
+          </div>
+
+          <div class="info-item">
+            <i class="fab fa-whatsapp"></i>
+            <span>+55 41 98901-7944</span>
+          </div>
+
+          <div class="info-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Curitiba - PR, Brasil</span>
+          </div>
+
+          <p style="margin-top: 30px; color: var(--text-muted);">
+            Pronto para levar seu negócio para o próximo nível? Preencha o formulário com os detalhes do seu projeto e retornaremos em até 24 horas.
+          </p>
+        </div>
+
+        <form id="quoteForm">
+          <div class="form-group">
+            <label for="fullname">Nome Completo *</label>
+            <input type="text" id="fullname" class="form-control" required placeholder="Seu nome" />
+          </div>
+
+          <div class="form-group">
+            <label for="business">Nome da Empresa</label>
+            <input type="text" id="business" class="form-control" placeholder="Sua empresa" />
+          </div>
+
+          <div class="form-group">
+            <label for="email">E-mail *</label>
+            <input type="email" id="email" class="form-control" required placeholder="email@exemplo.com" />
+          </div>
+
+          <div class="form-group">
+            <label for="phone">WhatsApp / Telefone *</label>
+            <input type="tel" id="phone" class="form-control" required placeholder="+55 41..." />
+          </div>
+
+          <div class="form-group">
+            <label for="type">Tipo de Site *</label>
+            <select id="type" class="form-control" required>
+              <option value="" disabled selected>Selecione uma opção</option>
+              <option value="Landing Page">Landing Page</option>
+              <option value="Institutional">Institucional</option>
+              <option value="E-commerce">E-commerce</option>
+              <option value="Other">Outro</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="deadline">Prazo Estimado</label>
+            <select id="deadline" class="form-control">
+              <option value="ASAP">O mais breve possível</option>
+              <option value="1 month">1 mês</option>
+              <option value="3 months">3 meses</option>
+              <option value="Flexible">Flexível</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="budget">Faixa de Orçamento</label>
+            <select id="budget" class="form-control">
+              <option value="Low">Abaixo de R$ 2.000</option>
+              <option value="Medium">R$ 2.000 - R$ 5.000</option>
+              <option value="High">Acima de R$ 5.000</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Descrição / Requisitos *</label>
+            <textarea id="message" class="form-control" required placeholder="Conte-nos sobre os objetivos do seu projeto..."></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width: 100%;">Enviar Solicitação</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Rodapé -->
+  <footer>
+    <div class="container">
+      <a href="#hero" class="logo footer-logo">JDB <span>SITES</span></a>
+      <div class="social-links">
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+      </div>
+      <p class="copyright">&copy; 2023 JDB SITES. Todos os direitos reservados. Curitiba - PR.</p>
+    </div>
+  </footer>
+
+  <!-- ✅ WhatsApp flutuante -->
+  <a
+    href="https://wa.me/5541989017944"
+    class="whatsapp-float"
+    target="_blank"
+    rel="noopener"
+    aria-label="Fale conosco no WhatsApp"
+  >
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <!-- Modal -->
+  <div id="portfolioModal" class="modal" aria-hidden="true">
+    <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <span class="close-modal" role="button" aria-label="Fechar Modal">&times;</span>
+      <h2 id="modalTitle" style="color: var(--primary-cyan); margin-bottom: 10px;"></h2>
+      <p id="modalDesc" style="color: #ddd; margin-bottom: 20px;"></p>
+      <div id="modalTags" class="chips" style="margin-bottom: 20px;"></div>
+      <a href="#contact" id="modalContactBtn" class="btn btn-primary">Solicitar Site Semelhante</a>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast">Solicitação enviada com sucesso! Entraremos em contato em breve.</div>
+
+  <script defer>
+    // MENU MOBILE
+    const mobileMenuBtn = document.getElementById('mobile-menu');
+    const navLinks = document.getElementById('nav-links');
+    const navLinksItems = document.querySelectorAll('.nav-links a');
+
+    if (mobileMenuBtn && navLinks) {
+      mobileMenuBtn.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+      });
+
+      navLinksItems.forEach(link => {
+        link.addEventListener('click', () => {
+          if (window.innerWidth <= 768) navLinks.classList.remove('active');
+        });
+      });
+    }
+
+    // MODAL PORTFÓLIO
+    const modal = document.getElementById('portfolioModal');
+    const closeModalBtn = document.querySelector('.close-modal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalDesc = document.getElementById('modalDesc');
+    const modalTags = document.getElementById('modalTags');
+    const modalContactBtn = document.getElementById('modalContactBtn');
+    const detailBtns = document.querySelectorAll('.open-modal-btn');
+
+    const openModal = (card) => {
+      if (!modal || !card) return;
+
+      const titleElement = card.querySelector('h4');
+      const descElement = card.querySelector('p');
+      const chips = card.querySelectorAll('.chip');
+
+      modalTitle.textContent = titleElement ? titleElement.textContent : '';
+      modalDesc.textContent = descElement ? descElement.textContent : '';
+
+      modalTags.innerHTML = '';
+      chips.forEach(chip => {
+        const span = document.createElement('span');
+        span.className = 'chip';
+        span.textContent = chip.textContent;
+        modalTags.appendChild(span);
+      });
+
+      modal.style.display = 'block';
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    };
+
+    const closeModal = () => {
+      if (!modal) return;
+      modal.style.display = 'none';
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    };
+
+    detailBtns.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const card = btn.closest('.portfolio-card');
+        openModal(card);
+      });
+    });
+
+    if (closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
+
+    window.addEventListener('click', (event) => {
+      if (event.target === modal) closeModal();
+    });
+
+    window.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') closeModal();
+    });
+
+    if (modalContactBtn) {
+      modalContactBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        closeModal();
+        const contact = document.getElementById('contact');
+        if (contact) contact.scrollIntoView({ behavior: 'smooth' });
+      });
+    }
+
+    // SCROLL REVEAL
+    function reveal() {
+      const reveals = document.querySelectorAll('.reveal');
+      const windowHeight = window.innerHeight;
+      const elementVisible = 150;
+
+      reveals.forEach(el => {
+        const elementTop = el.getBoundingClientRect().top;
+        if (elementTop < windowHeight - elementVisible) el.classList.add('active');
+      });
+    }
+    window.addEventListener('scroll', reveal);
+    reveal();
+
+    // FORM + TOAST
+    const form = document.getElementById('quoteForm');
+    const toast = document.getElementById('toast');
+
+    if (form && toast) {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        toast.className = "show";
+        form.reset();
+
+        setTimeout(() => {
+          toast.className = toast.className.replace("show", "");
+        }, 3000);
+      });
+    }
+  </script>
+  <script>
+  (function () {
+    const btn = document.getElementById("whatsBtn");
+    if (!btn) return;
+
+    const phone = "5541989017944";
+    const text = "Olá! Quero um orçamento.";
+    const webUrl = `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
+    const appUrl = `whatsapp://send?phone=${phone}&text=${encodeURIComponent(text)}`;
+
+    btn.addEventListener("click", function (e) {
+      // tenta abrir o app
+      e.preventDefault();
+
+      // tentativa no app (pode falhar em alguns navegadores)
+      window.location.href = appUrl;
+
+      // fallback web após um pequeno atraso
+      setTimeout(() => {
+        window.open(webUrl, "_blank");
+      }, 500);
+    });
+  })();
+</script>
+</body>
+</html>
