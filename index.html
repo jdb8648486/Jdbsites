@@ -2,631 +2,519 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>JDB SITES | Desenvolvimento Web Futurista</title>
 
-  <!-- Google Fonts -->
+  <meta name="description" content="JDB SITES: sites futuristas, rápidos e responsivos. Curitiba - PR. Solicite orçamento via formulário ou WhatsApp." />
+  <meta name="theme-color" content="#050510" />
+
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&family=Inter:wght@300;400;600&display=swap"
-    rel="stylesheet"
-  />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet" />
 
-  <!-- FontAwesome -->
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-  />
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 
   <style>
-    /* ===== BASE ===== */
-    :root {
-      --bg-dark: #050510;
-      --bg-card: rgba(255, 255, 255, 0.05);
-      --primary-cyan: #00f3ff;
-      --primary-purple: #bc13fe;
-      --text-main: #ffffff;
-      --text-muted: #a0a0b0;
-      --font-headings: 'Orbitron', sans-serif;
-      --font-tech: 'Rajdhani', sans-serif;
-      --font-body: 'Inter', sans-serif;
-      --transition: all 0.3s ease;
-      --glass-border: 1px solid rgba(255, 255, 255, 0.1);
+    :root{
+      --bg-dark:#050510;
+      --bg-card:rgba(255,255,255,.05);
+      --primary-cyan:#00f3ff;
+      --primary-purple:#bc13fe;
+      --text-main:#fff;
+      --text-muted:#a0a0b0;
+      --font-headings:'Orbitron',sans-serif;
+      --font-tech:'Rajdhani',sans-serif;
+      --font-body:'Inter',sans-serif;
+      --transition:all .25s ease;
+      --glass-border:1px solid rgba(255,255,255,.12);
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-
-    body {
-      background-color: var(--bg-dark);
-      color: var(--text-main);
-      font-family: var(--font-body);
-      line-height: 1.6;
-      overflow-x: hidden;
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      background:var(--bg-dark);
+      color:var(--text-main);
+      font-family:var(--font-body);
+      line-height:1.6;
+      overflow-x:hidden;
       background-image:
-        radial-gradient(circle at 10% 20%, rgba(188, 19, 254, 0.1) 0%, transparent 20%),
-        radial-gradient(circle at 90% 80%, rgba(0, 243, 255, 0.1) 0%, transparent 20%);
-      background-attachment: fixed;
-      position: relative;
+        radial-gradient(circle at 10% 20%, rgba(188,19,254,.12) 0%, transparent 25%),
+        radial-gradient(circle at 90% 80%, rgba(0,243,255,.10) 0%, transparent 25%);
+      background-attachment:fixed;
     }
 
-    h1, h2, h3, h4 {
-      font-family: var(--font-headings);
-      text-transform: uppercase;
-      letter-spacing: 2px;
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+
+    .container{max-width:1200px;margin:0 auto;padding:0 20px;position:relative;z-index:2}
+
+    .gradient-text{
+      background:linear-gradient(90deg,var(--primary-cyan),var(--primary-purple));
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      background-clip:text;
     }
 
-    .gradient-text {
-      background: linear-gradient(90deg, var(--primary-cyan), var(--primary-purple));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+    /* NAV */
+    .navbar{
+      position:fixed;top:0;left:0;width:100%;
+      z-index:1000;
+      background:rgba(5,5,16,.96);
+      border-bottom:var(--glass-border);
+      padding:14px 0;
+      backdrop-filter: blur(10px);
+    }
+    .nav-container{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .logo{
+      font-family:var(--font-headings);
+      font-weight:900;
+      letter-spacing:1px;
+      text-shadow:0 0 12px rgba(0,243,255,.35);
+      font-size:1.35rem;
+      padding:6px 0;
+      white-space:nowrap;
+    }
+    .logo span{color:var(--primary-cyan)}
+    .menu-toggle{
+      display:none;
+      border:none;background:transparent;color:var(--text-main);
+      font-size:1.35rem;
+      padding:10px;
+      cursor:pointer;
+    }
+    .nav-links{
+      list-style:none;
+      display:flex;
+      gap:26px;
+      align-items:center;
+    }
+    .nav-links a{
+      font-family:var(--font-tech);
+      font-size:1.12rem;
+      color:var(--text-main);
+      padding:8px 0;
+      transition:var(--transition);
+    }
+    .nav-links a:hover{color:var(--primary-cyan)}
+
+    /* BUTTONS */
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:12px 26px;
+      border-radius:8px;
+      cursor:pointer;
+      border:none;
+      font-family:var(--font-headings);
+      font-weight:700;
+      letter-spacing:1px;
+      text-transform:uppercase;
+      font-size:.9rem;
+      transition:var(--transition);
+      user-select:none;
+    }
+    .btn-primary{
+      background:transparent;
+      color:var(--primary-cyan);
+      border:1px solid var(--primary-cyan);
+      box-shadow:0 0 8px rgba(0,243,255,.18);
+    }
+    .btn-primary:hover{
+      background:var(--primary-cyan);
+      color:#000;
+      box-shadow:0 0 22px rgba(0,243,255,.55);
+    }
+    .btn-secondary{
+      background:rgba(188,19,254,.10);
+      color:#fff;
+      border:1px solid var(--primary-purple);
+    }
+    .btn-secondary:hover{
+      background:var(--primary-purple);
+      box-shadow:0 0 22px rgba(188,19,254,.55);
+    }
+    .btn:disabled{opacity:.6;cursor:not-allowed}
+
+    /* HERO */
+    #hero{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      position:relative;
+      overflow:hidden;
+      padding-top:76px;
+    }
+    .hero-bg{
+      position:absolute;inset:0;z-index:0;pointer-events:none;
+      background:linear-gradient(45deg,#050510,#1a1a2e,#050510);
+      background-size:400% 400%;
+      animation:gradientBG 16s ease infinite;
+    }
+    @keyframes gradientBG{
+      0%{background-position:0% 50%}
+      50%{background-position:100% 50%}
+      100%{background-position:0% 50%}
+    }
+    .hero-content{
+      z-index:1;
+      padding:20px;
+      opacity:0;
+      transform:translateY(26px);
+      animation:fadeInUp 900ms forwards 300ms;
+    }
+    @keyframes fadeInUp{to{opacity:1;transform:translateY(0)}}
+    .hero-title{
+      font-family:var(--font-headings);
+      font-size:3.2rem;
+      line-height:1.15;
+      text-shadow:0 0 20px rgba(0,0,0,.7);
+      margin-bottom:14px;
+    }
+    .hero-subtitle{
+      font-family:var(--font-tech);
+      color:var(--text-muted);
+      font-size:1.25rem;
+      margin-bottom:28px;
+    }
+    .hero-buttons{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+
+    /* SECTIONS */
+    section{padding:96px 0;position:relative;z-index:2}
+    .section-title{
+      text-align:center;
+      font-size:2.35rem;
+      font-family:var(--font-headings);
+      letter-spacing:2px;
+      text-transform:uppercase;
+      margin-bottom:10px;
+      position:relative;
+      display:inline-block;
+      left:50%;
+      transform:translateX(-50%);
+    }
+    .section-title::after{
+      content:"";
+      display:block;
+      width:62%;
+      height:3px;
+      margin:10px auto 0;
+      background:var(--primary-cyan);
+      box-shadow:0 0 10px var(--primary-cyan);
+      border-radius:999px;
+    }
+    .section-subtitle{
+      text-align:center;
+      font-family:var(--font-tech);
+      color:var(--text-muted);
+      font-size:1.15rem;
+      margin-bottom:40px;
     }
 
-    .section-title {
-      text-align: center;
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-      position: relative;
-      display: inline-block;
-      left: 50%;
-      transform: translateX(-50%);
+    .reveal{
+      opacity:0;
+      transform:translateY(22px);
+      transition:all 700ms ease;
+    }
+    .reveal.active{opacity:1;transform:translateY(0)}
+
+    /* SERVICES */
+    .services-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:24px;
+    }
+    .service-card{
+      background:var(--bg-card);
+      border:var(--glass-border);
+      border-radius:14px;
+      padding:34px 26px;
+      text-align:center;
+      transition:var(--transition);
+    }
+    .service-card:hover{
+      transform:translateY(-8px);
+      border-color:rgba(0,243,255,.5);
+      box-shadow:0 16px 36px rgba(0,0,0,.55);
+    }
+    .service-icon{font-size:2.7rem;color:var(--primary-cyan);margin-bottom:14px}
+    .service-card h3{
+      font-family:var(--font-headings);
+      font-size:1.25rem;
+      margin-bottom:10px;
+    }
+    .service-card p{color:var(--text-muted);font-size:.95rem}
+
+    /* PORTFOLIO */
+    .portfolio-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+      gap:24px;
+    }
+    .portfolio-card{
+      background:var(--bg-card);
+      border:var(--glass-border);
+      border-radius:14px;
+      overflow:hidden;
+      display:flex;
+      flex-direction:column;
+      transition:var(--transition);
+    }
+    .portfolio-card:hover{
+      transform:translateY(-6px);
+      border-color:rgba(188,19,254,.55);
+      box-shadow:0 18px 40px rgba(0,0,0,.55);
+    }
+    .portfolio-img{height:190px;overflow:hidden}
+    .portfolio-img img{
+      width:100%;height:100%;
+      object-fit:cover;
+      transition:transform 500ms ease;
+    }
+    .portfolio-card:hover .portfolio-img img{transform:scale(1.08)}
+    .portfolio-body{padding:18px 18px 20px;display:flex;flex-direction:column;gap:10px;flex:1}
+    .portfolio-body h4{
+      color:var(--primary-cyan);
+      font-family:var(--font-headings);
+      font-size:1.12rem;
+    }
+    .portfolio-body p{color:var(--text-muted);font-size:.92rem;flex:1}
+    .chips{display:flex;flex-wrap:wrap;gap:8px}
+    .chip{
+      font-size:.75rem;
+      padding:4px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.08);
+      color:#fff;
     }
 
-    .section-title::after {
-      content: '';
-      display: block;
-      width: 60%;
-      height: 3px;
-      background: var(--primary-cyan);
-      margin: 10px auto 0;
-      box-shadow: 0 0 10px var(--primary-cyan);
+    /* TESTIMONIALS */
+    .testimonial-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+      gap:24px;
+    }
+    .testimonial-card{
+      background:linear-gradient(145deg, rgba(255,255,255,.05), rgba(255,255,255,.015));
+      border:var(--glass-border);
+      border-radius:14px;
+      padding:26px;
+      position:relative;
+    }
+    .testimonial-card .quote{
+      position:absolute;top:18px;right:18px;
+      font-size:1.8rem;color:rgba(255,255,255,.10);
+    }
+    .stars{color:#ffd700;margin-bottom:12px}
+    .client{margin-top:14px;color:var(--primary-purple);font-family:var(--font-headings)}
+
+    /* PRICING */
+    .pricing-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:24px;
+      align-items:stretch;
+    }
+    .pricing-card{
+      background:var(--bg-card);
+      border:var(--glass-border);
+      border-radius:14px;
+      padding:30px;
+      transition:var(--transition);
+      text-align:center;
+    }
+    .pricing-card:hover{transform:translateY(-8px)}
+    .pricing-card.featured{
+      border-color:rgba(0,243,255,.55);
+      background:rgba(0,243,255,.06);
+      box-shadow:0 0 22px rgba(0,243,255,.12);
+      transform:scale(1.03);
+    }
+    .pricing-title{font-family:var(--font-headings);font-size:1.35rem;margin-bottom:10px}
+    .price-from{color:var(--primary-cyan);font-weight:700;margin-bottom:18px}
+    .pricing-features{list-style:none;text-align:left;margin:0 auto 22px;max-width:260px;color:var(--text-muted)}
+    .pricing-features li{margin:10px 0}
+    .pricing-features i{color:var(--primary-purple);margin-right:8px}
+
+    /* CONTACT */
+    .contact-wrap{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:32px;
+      background:rgba(255,255,255,.03);
+      border:var(--glass-border);
+      border-radius:18px;
+      padding:34px;
+    }
+    .contact-info h3{color:var(--primary-cyan);margin-bottom:12px;font-family:var(--font-headings)}
+    .info-item{display:flex;align-items:center;gap:12px;margin:12px 0;color:#e8e8ff}
+    .info-item i{
+      width:40px;height:40px;border-radius:50%;
+      display:flex;align-items:center;justify-content:center;
+      background:rgba(255,255,255,.08);
+      color:var(--primary-purple);
     }
 
-    .section-subtitle {
-      text-align: center;
-      color: var(--text-muted);
-      font-family: var(--font-tech);
-      font-size: 1.2rem;
-      margin-bottom: 3rem;
+    .form-group{margin-bottom:14px}
+    label{display:block;margin-bottom:6px;font-size:.92rem;color:#e8e8ff}
+    .form-control{
+      width:100%;
+      padding:12px 12px;
+      border-radius:10px;
+      border:1px solid rgba(255,255,255,.18);
+      background:rgba(0,0,0,.28);
+      color:#fff;
+      font-family:var(--font-body);
+      transition:var(--transition);
     }
+    .form-control:focus{
+      outline:none;
+      border-color:rgba(0,243,255,.65);
+      box-shadow:0 0 12px rgba(0,243,255,.18);
+    }
+    textarea.form-control{min-height:120px;resize:vertical}
 
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
-      position: relative;
-      z-index: 2;
+    /* FOOTER */
+    footer{
+      border-top:var(--glass-border);
+      background:rgba(0,0,0,.30);
+      padding:34px 0;
+      text-align:center;
     }
+    .social a{
+      display:inline-flex;align-items:center;justify-content:center;
+      width:42px;height:42px;border-radius:50%;
+      border:1px solid rgba(255,255,255,.12);
+      margin:0 6px;
+      color:var(--text-muted);
+      transition:var(--transition);
+    }
+    .social a:hover{color:var(--primary-cyan);transform:translateY(-3px);border-color:rgba(0,243,255,.4)}
+    .copyright{margin-top:14px;color:var(--text-muted);font-size:.92rem}
 
-    /* ===== BOTÕES (CORRIGIDO) =====
-       NÃO estiliza todos os <a>. Somente:
-       - .btn (qualquer elemento com .btn)
-       - a.btn (links com classe btn)
-       - button.btn
-    */
-    .btn, a.btn, button.btn {
-      display: inline-block;
-      padding: 12px 30px;
-      font-family: var(--font-headings);
-      font-weight: 700;
-      text-decoration: none;
-      border-radius: 6px;
-      transition: var(--transition);
-      cursor: pointer;
-      border: none;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      font-size: 0.9rem;
-      position: relative;
-      pointer-events: auto;
-    }
-
-    .btn-primary {
-      background: transparent;
-      color: var(--primary-cyan);
-      border: 1px solid var(--primary-cyan);
-      box-shadow: 0 0 5px rgba(0, 243, 255, 0.2);
-    }
-    .btn-primary:hover {
-      background: var(--primary-cyan);
-      color: #000;
-      box-shadow: 0 0 20px rgba(0, 243, 255, 0.6);
-    }
-
-    .btn-secondary {
-      background: rgba(188, 19, 254, 0.1);
-      color: var(--text-main);
-      border: 1px solid var(--primary-purple);
-    }
-    .btn-secondary:hover {
-      background: var(--primary-purple);
-      color: #fff;
-      box-shadow: 0 0 20px rgba(188, 19, 254, 0.6);
-    }
-
-    /* ===== NAVBAR ===== */
-    .navbar {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%;
-      z-index: 1000;
-      background: rgba(5, 5, 16, 0.98);
-      border-bottom: var(--glass-border);
-      padding: 15px 0;
-    }
-
-    .nav-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      pointer-events: auto;
-    }
-
-    .logo {
-      font-family: var(--font-headings);
-      font-size: 1.5rem;
-      font-weight: 900;
-      color: var(--text-main);
-      text-decoration: none;
-      text-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
-      padding: 6px 0;
-    }
-    .logo span { color: var(--primary-cyan); }
-
-    .nav-links {
-      display: flex;
-      list-style: none;
-      gap: 30px;
-    }
-    .nav-links a {
-      color: var(--text-main);
-      text-decoration: none;
-      font-family: var(--font-tech);
-      font-weight: 500;
-      font-size: 1.1rem;
-      transition: var(--transition);
-      padding: 6px 0;
-      display: inline-block;
-    }
-    .nav-links a:hover { color: var(--primary-cyan); }
-
-    .menu-toggle {
-      display: none;
-      color: var(--text-main);
-      font-size: 1.5rem;
-      cursor: pointer;
-      border: none;
-      background: none;
-      padding: 8px;
-    }
-
-    /* ===== HERO ===== */
-    #hero {
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
-      text-align: center;
-      padding-top: 70px;
-    }
-
-    .hero-bg-anim {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      z-index: 0;
-      pointer-events: none;
-      background: linear-gradient(45deg, #050510, #1a1a2e, #050510);
-      background-size: 400% 400%;
-      animation: gradientBG 15s ease infinite;
-    }
-    @keyframes gradientBG {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    .hero-content {
-      z-index: 1;
-      padding: 20px;
-      opacity: 0;
-      transform: translateY(30px);
-      animation: fadeInUp 1s forwards 0.5s;
-    }
-    @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
-
-    .hero-title {
-      font-size: 3.5rem;
-      margin-bottom: 20px;
-      line-height: 1.2;
-      text-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
-    }
-
-    .hero-subtitle {
-      font-size: 1.3rem;
-      color: var(--text-muted);
-      margin-bottom: 40px;
-      font-family: var(--font-tech);
-    }
-
-    .hero-buttons {
-      display: flex;
-      gap: 20px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    /* ===== SECTIONS ===== */
-    section {
-      padding: 100px 0;
-      position: relative;
-      z-index: 2;
-    }
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: all 0.8s ease-out;
-    }
-    .reveal.active {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* ===== SERVICES ===== */
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 30px;
-    }
-    .service-card {
-      background: var(--bg-card);
-      border: var(--glass-border);
-      padding: 40px 30px;
-      border-radius: 12px;
-      transition: var(--transition);
-      text-align: center;
-    }
-    .service-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-      border-color: var(--primary-cyan);
-    }
-    .service-icon { font-size: 3rem; color: var(--primary-cyan); margin-bottom: 20px; }
-    .service-card h3 { margin-bottom: 15px; font-size: 1.4rem; }
-    .service-card p { color: var(--text-muted); font-size: 0.95rem; }
-
-    /* ===== PORTFOLIO ===== */
-    .portfolio-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 30px;
-    }
-    .portfolio-card {
-      background: var(--bg-card);
-      border: var(--glass-border);
-      border-radius: 12px;
-      overflow: hidden;
-      transition: var(--transition);
-      display: flex;
-      flex-direction: column;
-    }
-    .portfolio-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 0 15px rgba(188, 19, 254, 0.2);
-      border-color: var(--primary-purple);
-    }
-    .portfolio-img-wrapper {
-      width: 100%;
-      height: 200px;
-      overflow: hidden;
-      position: relative;
-      pointer-events: none;
-    }
-    .portfolio-img-wrapper img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.5s ease;
-    }
-    .portfolio-card:hover .portfolio-img-wrapper img { transform: scale(1.1); }
-
-    .portfolio-content {
-      padding: 20px;
-      flex-grow: 1;
-      display: flex;
-      flex-direction: column;
-    }
-    .portfolio-content h4 {
-      color: var(--primary-cyan);
-      margin-bottom: 10px;
-      font-size: 1.2rem;
-    }
-    .portfolio-content p {
-      color: var(--text-muted);
-      font-size: 0.9rem;
-      margin-bottom: 15px;
-      flex-grow: 1;
-    }
-
-    .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 15px; }
-    .chip {
-      font-size: 0.75rem;
-      background: rgba(255, 255, 255, 0.1);
-      padding: 4px 10px;
-      border-radius: 999px;
-      color: #fff;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    /* ===== TESTIMONIALS ===== */
-    .testimonial-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 30px;
-    }
-    .testimonial-card {
-      background: linear-gradient(145deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.01) 100%);
-      padding: 30px;
-      border-radius: 12px;
-      border: var(--glass-border);
-      position: relative;
-    }
-    .testimonial-card i.quote-icon {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      font-size: 2rem;
-      color: rgba(255, 255, 255, 0.1);
-    }
-    .stars { color: #ffd700; margin-bottom: 15px; font-size: 0.9rem; }
-    .client-name {
-      display: block;
-      margin-top: 15px;
-      font-family: var(--font-headings);
-      color: var(--primary-purple);
-      font-size: 1rem;
-    }
-
-    /* ===== PRICING ===== */
-    .pricing-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 30px;
-      align-items: center;
-    }
-    .pricing-card {
-      background: var(--bg-card);
-      border: var(--glass-border);
-      padding: 40px;
-      border-radius: 12px;
-      text-align: center;
-      transition: var(--transition);
-    }
-    .pricing-card.featured {
-      background: rgba(0, 243, 255, 0.05);
-      border-color: var(--primary-cyan);
-      transform: scale(1.05);
-      box-shadow: 0 0 20px rgba(0, 243, 255, 0.1);
-    }
-    .pricing-card:hover { transform: translateY(-10px) scale(1.05); }
-    .pricing-title { font-family: var(--font-headings); font-size: 1.5rem; margin-bottom: 10px; }
-    .price-placeholder { font-size: 1.2rem; color: var(--primary-cyan); margin-bottom: 30px; font-weight: 600; }
-    .pricing-features { list-style: none; margin-bottom: 30px; text-align: left; }
-    .pricing-features li { margin-bottom: 10px; color: var(--text-muted); }
-    .pricing-features li i { color: var(--primary-purple); margin-right: 10px; }
-
-    /* ===== CONTACT ===== */
-    .contact-layout {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 50px;
-      background: rgba(255, 255, 255, 0.03);
-      padding: 50px;
-      border-radius: 20px;
-      border: var(--glass-border);
-    }
-    .contact-info h3 { margin-bottom: 20px; color: var(--primary-cyan); }
-    .info-item {
-      display: flex;
-      align-items: center;
-      margin-bottom: 20px;
-      font-size: 1.1rem;
-    }
-    .info-item i {
-      width: 40px;
-      height: 40px;
-      background: rgba(255, 255, 255, 0.1);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-      margin-right: 15px;
-      color: var(--primary-purple);
-    }
-    .form-group { margin-bottom: 20px; }
-    .form-group label { display: block; margin-bottom: 8px; font-size: 0.9rem; font-weight: 500; }
-    .form-control {
-      width: 100%;
-      padding: 12px;
-      background: rgba(0, 0, 0, 0.3);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 8px;
-      color: #fff;
-      font-family: var(--font-body);
-      transition: var(--transition);
-    }
-    .form-control:focus {
-      outline: none;
-      border-color: var(--primary-cyan);
-      box-shadow: 0 0 10px rgba(0, 243, 255, 0.2);
-    }
-    textarea.form-control { resize: vertical; min-height: 120px; }
-
-    /* ===== FOOTER ===== */
-    footer {
-      padding: 40px 0;
-      text-align: center;
-      border-top: var(--glass-border);
-      background: rgba(0, 0, 0, 0.3);
-      position: relative;
-      z-index: 2;
-    }
-    .footer-logo {
-      font-family: var(--font-headings);
-      font-size: 1.5rem;
-      font-weight: 900;
-      margin-bottom: 20px;
-      display: inline-block;
-    }
-    .social-links { margin-bottom: 20px; }
-    .social-links a {
-      color: var(--text-muted);
-      font-size: 1.2rem;
-      margin: 0 10px;
-      transition: var(--transition);
-      padding: 6px;
-      display: inline-block;
-    }
-    .social-links a:hover { color: var(--primary-cyan); transform: translateY(-3px); }
-    .copyright { color: var(--text-muted); font-size: 0.9rem; }
-
-    /* ===== WHATSAPP (FORÇADO, REDONDO E FLUTUANTE) ===== */
+    /* WHATSAPP FLOAT */
     .whatsapp-float{
-      position: fixed !important;
-      right: 26px !important;
-      bottom: 40px !important;
-      width: 60px !important;
-      height: 60px !important;
-      border-radius: 50% !important;
-
-      padding: 0 !important;
-      margin: 0 !important;
-
-      display: flex !important;
-      align-items: center !important;
-      justify-content: center !important;
-
-      background: #25d366 !important;
-      color: #fff !important;
-      text-decoration: none !important;
-
-      z-index: 99999 !important;
-      box-shadow: 2px 2px 10px rgba(0,0,0,0.5) !important;
-      transition: transform 0.2s ease, background 0.2s ease !important;
+      position:fixed !important;
+      right:22px !important;
+      bottom:26px !important;
+      width:60px !important;
+      height:60px !important;
+      border-radius:50% !important;
+      display:flex !important;
+      align-items:center !important;
+      justify-content:center !important;
+      background:#25d366 !important;
+      color:#fff !important;
+      z-index:99999 !important;
+      box-shadow:2px 2px 12px rgba(0,0,0,.55) !important;
+      transition:transform .2s ease, background .2s ease !important;
     }
-    .whatsapp-float:hover{
-      background: #128c7e !important;
-      transform: scale(1.08) !important;
+    .whatsapp-float:hover{background:#128c7e !important;transform:scale(1.08) !important}
+    .whatsapp-float i{font-size:30px !important;line-height:1}
+
+    /* MODAL */
+    .modal{
+      display:none;
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,.82);
+      z-index:10000;
+      overflow:auto;
+      padding:24px 12px;
     }
-    .whatsapp-float i{
-      font-size: 30px !important;
-      line-height: 1 !important;
+    .modal-card{
+      max-width:640px;
+      margin:8% auto 0;
+      background:#0f0f1f;
+      border-radius:14px;
+      border:1px solid rgba(0,243,255,.55);
+      box-shadow:0 0 30px rgba(0,243,255,.16);
+      padding:26px;
+      position:relative;
+    }
+    .modal-close{
+      position:absolute;top:12px;right:14px;
+      font-size:30px;
+      color:#aaa;
+      cursor:pointer;
+      user-select:none;
+    }
+    .modal-close:hover{color:#fff}
+
+    /* TOAST */
+    #toast{
+      visibility:hidden;
+      min-width:260px;
+      background:var(--primary-cyan);
+      color:#000;
+      text-align:center;
+      border-radius:10px;
+      padding:14px 16px;
+      position:fixed;
+      left:50%;
+      bottom:26px;
+      transform:translateX(-50%);
+      font-weight:700;
+      box-shadow:0 0 20px rgba(0,243,255,.50);
+      z-index:10001;
+      pointer-events:none;
+    }
+    #toast.show{
+      visibility:visible;
+      animation:toastIn .35s ease, toastOut .35s ease 2.6s;
+    }
+    @keyframes toastIn{from{opacity:0;transform:translateX(-50%) translateY(10px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
+    @keyframes toastOut{from{opacity:1}to{opacity:0}}
+
+    /* RESPONSIVE */
+    @media (max-width: 900px){
+      .hero-title{font-size:2.55rem}
+      .contact-wrap{grid-template-columns:1fr}
     }
     @media (max-width: 768px){
+      .menu-toggle{display:block}
+      .nav-links{
+        display:none;
+        position:absolute;
+        top:64px;left:0;right:0;
+        flex-direction:column;
+        gap:14px;
+        padding:16px 20px 18px;
+        background:rgba(5,5,16,.98);
+        border-bottom:1px solid rgba(0,243,255,.55);
+      }
+      .nav-links.active{display:flex}
+      .hero-title{font-size:2.15rem}
+      .hero-subtitle{font-size:1.1rem}
+      .pricing-card.featured{transform:scale(1)}
       .whatsapp-float{
-        right: 16px !important;
-        bottom: 18px !important;
-        width: 56px !important;
-        height: 56px !important;
+        right:14px !important;
+        bottom:16px !important;
+        width:56px !important;
+        height:56px !important;
       }
-      .whatsapp-float i{ font-size: 28px !important; }
-      .hero-title { font-size: 2.2rem; }
-      .contact-layout { grid-template-columns: 1fr; }
-      .pricing-card.featured { transform: scale(1); }
-    }
-
-    /* ===== MODAL ===== */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 10000;
-      left: 0; top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background-color: rgba(0,0,0,0.8);
-    }
-    .modal-content {
-      background-color: #0f0f1f;
-      margin: 10% auto;
-      padding: 30px;
-      border: 1px solid var(--primary-cyan);
-      width: 90%;
-      max-width: 600px;
-      border-radius: 12px;
-      position: relative;
-      box-shadow: 0 0 30px rgba(0, 243, 255, 0.2);
-    }
-    .close-modal {
-      color: #aaa;
-      float: right;
-      font-size: 28px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-    .close-modal:hover { color: #fff; }
-
-    /* ===== TOAST ===== */
-    #toast {
-      visibility: hidden;
-      min-width: 250px;
-      background-color: var(--primary-cyan);
-      color: #000;
-      text-align: center;
-      border-radius: 6px;
-      padding: 16px;
-      position: fixed;
-      z-index: 10001;
-      left: 50%;
-      bottom: 30px;
-      transform: translateX(-50%);
-      font-weight: 600;
-      box-shadow: 0 0 20px rgba(0, 243, 255, 0.5);
-      pointer-events: none;
-    }
-    #toast.show {
-      visibility: visible;
-      animation: fadein 0.5s, fadeout 0.5s 2.5s;
-    }
-    @keyframes fadein { from { bottom: 0; opacity: 0; } to { bottom: 30px; opacity: 1; } }
-    @keyframes fadeout { from { bottom: 30px; opacity: 1; } to { bottom: 0; opacity: 0; } }
-
-    /* ===== RESPONSIVE MENU ===== */
-    @media (max-width: 768px) {
-      .nav-links {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 70px;
-        left: 0;
-        width: 100%;
-        background: rgba(5, 5, 16, 0.98);
-        padding: 20px;
-        text-align: center;
-        border-bottom: 1px solid var(--primary-cyan);
-      }
-      .nav-links.active { display: flex; }
-      .menu-toggle { display: block; }
+      .whatsapp-float i{font-size:28px !important}
     }
   </style>
 </head>
 
 <body>
-  <!-- Navegação -->
+  <!-- NAV -->
   <nav class="navbar">
     <div class="container nav-container">
-      <a href="#hero" class="logo">JDB <span>SITES</span></a>
+      <a class="logo" href="#hero">JDB <span>SITES</span></a>
 
-      <button class="menu-toggle" id="mobile-menu" aria-label="Abrir Menu" type="button">
+      <button id="mobile-menu" class="menu-toggle" type="button" aria-label="Abrir menu">
         <i class="fas fa-bars"></i>
       </button>
 
-      <ul class="nav-links" id="nav-links">
+      <ul id="nav-links" class="nav-links">
         <li><a href="#hero">Início</a></li>
         <li><a href="#services">Serviços</a></li>
         <li><a href="#portfolio">Portfólio</a></li>
@@ -637,507 +525,501 @@
     </div>
   </nav>
 
-  <!-- Hero -->
+  <!-- HERO -->
   <header id="hero">
-    <div class="hero-bg-anim"></div>
+    <div class="hero-bg"></div>
     <div class="container hero-content">
-      <h1 class="hero-title">Sites Futuristas<br /><span class="gradient-text">Que Convertem</span></h1>
-      <p class="hero-subtitle">Design Premium + Performance para empresas em Curitiba e além.</p>
+      <h1 class="hero-title">
+        Sites Futuristas<br />
+        <span class="gradient-text">Que Convertem</span>
+      </h1>
+      <p class="hero-subtitle">Design premium + performance para empresas em Curitiba e além.</p>
       <div class="hero-buttons">
-        <a href="#contact" class="btn btn-primary">Pedir Orçamento</a>
-        <a href="#portfolio" class="btn btn-secondary">Ver Portfólio</a>
+        <a class="btn btn-primary" href="#contact"><i class="fa-solid fa-paper-plane"></i> Pedir Orçamento</a>
+        <a class="btn btn-secondary" href="#portfolio"><i class="fa-solid fa-layer-group"></i> Ver Portfólio</a>
       </div>
     </div>
   </header>
 
-  <!-- Serviços -->
+  <!-- SERVICES -->
   <section id="services">
     <div class="container">
       <h2 class="section-title">Nossos Serviços</h2>
-      <p class="section-subtitle">Soluções de próxima geração para sua presença digital</p>
+      <p class="section-subtitle">Soluções modernas para sua presença digital</p>
 
       <div class="services-grid">
         <div class="service-card reveal">
-          <i class="fas fa-laptop-code service-icon"></i>
-          <h3>Design de Sites Personalizados</h3>
-          <p>Interfaces sob medida criadas para capturar a essência futurista única da sua marca.</p>
+          <i class="fa-solid fa-laptop-code service-icon"></i>
+          <h3>Sites Institucionais</h3>
+          <p>Credibilidade, performance e visual futurista para apresentar sua empresa.</p>
         </div>
 
         <div class="service-card reveal">
-          <i class="fas fa-rocket service-icon"></i>
+          <i class="fa-solid fa-rocket service-icon"></i>
           <h3>Landing Pages</h3>
-          <p>Páginas únicas de alta conversão otimizadas para campanhas de anúncios e metas específicas.</p>
+          <p>Alta conversão para anúncios, tráfego pago e campanhas específicas.</p>
         </div>
 
         <div class="service-card reveal">
-          <i class="fas fa-shopping-cart service-icon"></i>
+          <i class="fa-solid fa-cart-shopping service-icon"></i>
           <h3>Lojas Virtuais</h3>
-          <p>E-commerces robustos com checkout integrado e gestão de estoque simplificada.</p>
+          <p>E-commerce pronto para vender com layout profissional e experiência rápida.</p>
         </div>
 
         <div class="service-card reveal">
-          <i class="fas fa-tachometer-alt service-icon"></i>
-          <h3>Otimização de Velocidade e SEO</h3>
-          <p>Otimização técnica para garantir carregamento ultrarrápido e melhores ranqueamentos no Google.</p>
+          <i class="fa-solid fa-gauge-high service-icon"></i>
+          <h3>Velocidade & SEO</h3>
+          <p>Otimização técnica para carregar rápido e melhorar sua presença no Google.</p>
         </div>
 
         <div class="service-card reveal">
-          <i class="fas fa-tools service-icon"></i>
-          <h3>Manutenção e Atualizações</h3>
-          <p>Tranquilidade total com patches de segurança regulares, backups e atualizações de conteúdo.</p>
+          <i class="fa-solid fa-screwdriver-wrench service-icon"></i>
+          <h3>Manutenção</h3>
+          <p>Atualizações, ajustes e suporte para manter seu site sempre perfeito.</p>
         </div>
 
         <div class="service-card reveal">
-          <i class="fas fa-server service-icon"></i>
-          <h3>Consultoria de Hospedagem</h3>
-          <p>Orientação especializada na escolha da melhor infraestrutura para as necessidades do seu site.</p>
+          <i class="fa-solid fa-shield-halved service-icon"></i>
+          <h3>Segurança</h3>
+          <p>Boas práticas e ajustes para reduzir riscos e manter o projeto confiável.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Portfólio -->
+  <!-- PORTFOLIO -->
   <section id="portfolio">
     <div class="container">
-      <h2 class="section-title">Trabalhos em Destaque</h2>
-      <p class="section-subtitle">Um vislumbre do nosso universo digital</p>
+      <h2 class="section-title">Portfólio</h2>
+      <p class="section-subtitle">Alguns estilos que entregamos (exemplos)</p>
 
       <div class="portfolio-grid">
-        <div class="portfolio-card reveal">
-          <div class="portfolio-img-wrapper">
-            <img src="https://picsum.photos/seed/neonrestaurant/600/400" alt="Restaurante Neon" />
+        <article class="portfolio-card reveal">
+          <div class="portfolio-img">
+            <img src="https://picsum.photos/seed/neon-restaurant/900/600" alt="Landing Page Restaurante Neon">
           </div>
-          <div class="portfolio-content">
+          <div class="portfolio-body">
             <h4>Landing Page Restaurante Neon</h4>
-            <p>Uma página vibrante, inspirada no cyberpunk, para uma experiência gastronômica de alto padrão.</p>
+            <p>Visual cyberpunk, foco em reservas e chamada para ação rápida.</p>
             <div class="chips">
-              <span class="chip">Responsivo</span>
-              <span class="chip">Reservas</span>
+              <span class="chip">Responsivo</span><span class="chip">Reservas</span><span class="chip">Conversão</span>
             </div>
-            <button type="button" class="btn btn-secondary open-modal-btn">Ver Detalhes</button>
+            <button class="btn btn-secondary open-modal-btn" type="button">Ver Detalhes</button>
           </div>
-        </div>
+        </article>
 
-        <div class="portfolio-card reveal">
-          <div class="portfolio-img-wrapper">
-            <img src="https://picsum.photos/seed/techstartup/600/400" alt="Startup Tecnológica" />
+        <article class="portfolio-card reveal">
+          <div class="portfolio-img">
+            <img src="https://picsum.photos/seed/tech-startup/900/600" alt="Homepage Startup">
           </div>
-          <div class="portfolio-content">
-            <h4>Homepage Startup Tecnológica</h4>
-            <p>Design minimalista e elegante focando nos recursos do produto SaaS e confiança do usuário.</p>
+          <div class="portfolio-body">
+            <h4>Homepage Startup</h4>
+            <p>Design limpo com seção de features, prova social e captura de leads.</p>
             <div class="chips">
-              <span class="chip">SaaS</span>
-              <span class="chip">Formulário de Lead</span>
+              <span class="chip">SaaS</span><span class="chip">Lead</span><span class="chip">Performance</span>
             </div>
-            <button type="button" class="btn btn-secondary open-modal-btn">Ver Detalhes</button>
+            <button class="btn btn-secondary open-modal-btn" type="button">Ver Detalhes</button>
           </div>
-        </div>
+        </article>
 
-        <div class="portfolio-card reveal">
-          <div class="portfolio-img-wrapper">
-            <img src="https://picsum.photos/seed/realestate/600/400" alt="Imobiliária" />
+        <article class="portfolio-card reveal">
+          <div class="portfolio-img">
+            <img src="https://picsum.photos/seed/real-estate/900/600" alt="Showcase Imobiliário">
           </div>
-          <div class="portfolio-content">
+          <div class="portfolio-body">
             <h4>Showcase Imobiliário</h4>
-            <p>Listagens de imóveis imersivas com integração de tours virtuais.</p>
+            <p>Listagem de imóveis com galeria, CTA para WhatsApp e filtros.</p>
             <div class="chips">
-              <span class="chip">Galeria</span>
-              <span class="chip">Busca</span>
+              <span class="chip">Galeria</span><span class="chip">Filtros</span><span class="chip">Contato</span>
             </div>
-            <button type="button" class="btn btn-secondary open-modal-btn">Ver Detalhes</button>
+            <button class="btn btn-secondary open-modal-btn" type="button">Ver Detalhes</button>
           </div>
-        </div>
+        </article>
 
-        <div class="portfolio-card reveal">
-          <div class="portfolio-img-wrapper">
-            <img src="https://picsum.photos/seed/fitness/600/400" alt="Academia" />
+        <article class="portfolio-card reveal">
+          <div class="portfolio-img">
+            <img src="https://picsum.photos/seed/fitness/900/600" alt="Página Academia">
           </div>
-          <div class="portfolio-content">
-            <h4>Página Conversão Academia</h4>
-            <p>Design de alta energia impulsionando inscrições de membros.</p>
+          <div class="portfolio-body">
+            <h4>Página Academia</h4>
+            <p>Foco em matrícula e planos com destaque para benefícios e depoimentos.</p>
             <div class="chips">
-              <span class="chip">Horários</span>
-              <span class="chip">Treinadores</span>
+              <span class="chip">Planos</span><span class="chip">Conversão</span><span class="chip">Mobile</span>
             </div>
-            <button type="button" class="btn btn-secondary open-modal-btn">Ver Detalhes</button>
+            <button class="btn btn-secondary open-modal-btn" type="button">Ver Detalhes</button>
           </div>
-        </div>
+        </article>
 
-        <div class="portfolio-card reveal">
-          <div class="portfolio-img-wrapper">
-            <img src="https://picsum.photos/seed/lawfirm/600/400" alt="Advocacia" />
+        <article class="portfolio-card reveal">
+          <div class="portfolio-img">
+            <img src="https://picsum.photos/seed/law/900/600" alt="Site Advocacia">
           </div>
-          <div class="portfolio-content">
-            <h4>Site Profissional de Advocacia</h4>
-            <p>Layout focado em credibilidade com paleta de cores confiável.</p>
+          <div class="portfolio-body">
+            <h4>Site Advocacia</h4>
+            <p>Layout sério com credibilidade, serviços, áreas de atuação e contato.</p>
             <div class="chips">
-              <span class="chip">Profissional</span>
-              <span class="chip">Artigos</span>
+              <span class="chip">Credibilidade</span><span class="chip">SEO</span><span class="chip">WhatsApp</span>
             </div>
-            <button type="button" class="btn btn-secondary open-modal-btn">Ver Detalhes</button>
+            <button class="btn btn-secondary open-modal-btn" type="button">Ver Detalhes</button>
           </div>
-        </div>
+        </article>
 
-        <div class="portfolio-card reveal">
-          <div class="portfolio-img-wrapper">
-            <img src="https://picsum.photos/seed/beautysalon/600/400" alt="Salão de Beleza" />
+        <article class="portfolio-card reveal">
+          <div class="portfolio-img">
+            <img src="https://picsum.photos/seed/beauty/900/600" alt="Agendamento Salão">
           </div>
-          <div class="portfolio-content">
-            <h4>Site Agendamento Salão</h4>
-            <p>Interface elegante com agendamento online de compromissos.</p>
+          <div class="portfolio-body">
+            <h4>Agendamento Salão</h4>
+            <p>Serviços, galeria e CTA forte para agendamento pelo WhatsApp.</p>
             <div class="chips">
-              <span class="chip">Agendamento</span>
-              <span class="chip">Serviços</span>
+              <span class="chip">Serviços</span><span class="chip">Galeria</span><span class="chip">Agendamento</span>
             </div>
-            <button type="button" class="btn btn-secondary open-modal-btn">Ver Detalhes</button>
+            <button class="btn btn-secondary open-modal-btn" type="button">Ver Detalhes</button>
           </div>
-        </div>
+        </article>
       </div>
     </div>
   </section>
 
-  <!-- Depoimentos -->
+  <!-- TESTIMONIALS -->
   <section id="testimonials">
     <div class="container">
-      <h2 class="section-title">O que dizem os Clientes</h2>
-      <p class="section-subtitle">O que nossos parceiros dizem sobre nossos resultados</p>
+      <h2 class="section-title">Depoimentos</h2>
+      <p class="section-subtitle">5 estrelas de clientes (exemplos)</p>
 
       <div class="testimonial-grid">
         <div class="testimonial-card reveal">
-          <i class="fas fa-quote-right quote-icon"></i>
+          <i class="fa-solid fa-quote-right quote"></i>
           <div class="stars">★★★★★</div>
-          <p>"A JDB SITES transformou completamente nossa presença online. Os leads aumentaram 40% no primeiro mês. O visual futurista nos diferencia dos concorrentes."</p>
-          <span class="client-name">Mariana S.</span>
+          <p>"O site ficou muito acima do esperado. Rápido, bonito e já trouxe contatos no primeiro dia."</p>
+          <div class="client">Mariana S.</div>
         </div>
+
         <div class="testimonial-card reveal">
-          <i class="fas fa-quote-right quote-icon"></i>
+          <i class="fa-solid fa-quote-right quote"></i>
           <div class="stars">★★★★★</div>
-          <p>"Velocidade e atenção aos detalhes incríveis. O site carrega instantaneamente e nossos clientes adoram o novo sistema de agendamento."</p>
-          <span class="client-name">Carlos R.</span>
+          <p>"Atendimento ágil e profissional. O botão do WhatsApp aumentou muito as conversões."</p>
+          <div class="client">Carlos R.</div>
         </div>
+
         <div class="testimonial-card reveal">
-          <i class="fas fa-quote-right quote-icon"></i>
+          <i class="fa-solid fa-quote-right quote"></i>
           <div class="stars">★★★★★</div>
-          <p>"Profissionais, criativos e tecnicamente experts. Entenderam perfeitamente a visão da nossa marca e entregaram no prazo."</p>
-          <span class="client-name">Fernanda L.</span>
+          <p>"Design futurista e performance perfeita. Entrega rápida e tudo funcionando 100%."</p>
+          <div class="client">Fernanda L.</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Preços -->
+  <!-- PRICING -->
   <section id="pricing">
     <div class="container">
-      <h2 class="section-title">Investimento</h2>
-      <p class="section-subtitle">Soluções escaláveis para cada estágio de crescimento</p>
+      <h2 class="section-title">Preços</h2>
+      <p class="section-subtitle">Pacotes flexíveis para cada necessidade</p>
 
       <div class="pricing-grid">
         <div class="pricing-card reveal">
-          <h3 class="pricing-title">Inicial</h3>
-          <div class="price-placeholder">Preços a partir de:</div>
+          <div class="pricing-title">Inicial</div>
+          <div class="price-from">Preços a partir de:</div>
           <ul class="pricing-features">
-            <li><i class="fas fa-check"></i> Site de Página Única</li>
-            <li><i class="fas fa-check"></i> Responsivo para Mobile</li>
-            <li><i class="fas fa-check"></i> Formulário de Contato</li>
-            <li><i class="fas fa-check"></i> Entrega em 1 Semana</li>
+            <li><i class="fa-solid fa-check"></i> Página única</li>
+            <li><i class="fa-solid fa-check"></i> Responsivo</li>
+            <li><i class="fa-solid fa-check"></i> Botão WhatsApp</li>
+            <li><i class="fa-solid fa-check"></i> Formulário</li>
           </ul>
-          <a href="#contact" class="btn btn-secondary">Solicitar Orçamento</a>
+          <a class="btn btn-secondary" href="#contact">Solicitar Orçamento</a>
         </div>
 
         <div class="pricing-card featured reveal">
-          <h3 class="pricing-title" style="color:var(--primary-cyan)">Negócios</h3>
-          <div class="price-placeholder">Preços a partir de:</div>
+          <div class="pricing-title" style="color:var(--primary-cyan)">Negócios</div>
+          <div class="price-from">Preços a partir de:</div>
           <ul class="pricing-features">
-            <li><i class="fas fa-check"></i> Site Multi-páginas (até 5)</li>
-            <li><i class="fas fa-check"></i> Configuração Básica de SEO</li>
-            <li><i class="fas fa-check"></i> Integração com Redes Sociais</li>
-            <li><i class="fas fa-check"></i> Otimização de Velocidade</li>
+            <li><i class="fa-solid fa-check"></i> Até 5 páginas</li>
+            <li><i class="fa-solid fa-check"></i> SEO básico</li>
+            <li><i class="fa-solid fa-check"></i> Portfólio / serviços</li>
+            <li><i class="fa-solid fa-check"></i> Otimização</li>
           </ul>
-          <a href="#contact" class="btn btn-primary">Solicitar Orçamento</a>
+          <a class="btn btn-primary" href="#contact">Solicitar Orçamento</a>
         </div>
 
         <div class="pricing-card reveal">
-          <h3 class="pricing-title">Profissional</h3>
-          <div class="price-placeholder">Preços a partir de:</div>
+          <div class="pricing-title">Profissional</div>
+          <div class="price-from">Preços a partir de:</div>
           <ul class="pricing-features">
-            <li><i class="fas fa-check"></i> E-commerce ou App Personalizado</li>
-            <li><i class="fas fa-check"></i> SEO Avançado e Analytics</li>
-            <li><i class="fas fa-check"></i> Integração de Pagamentos</li>
-            <li><i class="fas fa-check"></i> Suporte Prioritário</li>
+            <li><i class="fa-solid fa-check"></i> Loja virtual / sistema</li>
+            <li><i class="fa-solid fa-check"></i> SEO avançado</li>
+            <li><i class="fa-solid fa-check"></i> Analytics</li>
+            <li><i class="fa-solid fa-check"></i> Suporte</li>
           </ul>
-          <a href="#contact" class="btn btn-secondary">Solicitar Orçamento</a>
+          <a class="btn btn-secondary" href="#contact">Solicitar Orçamento</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Contato -->
+  <!-- CONTACT -->
   <section id="contact">
     <div class="container">
-      <h2 class="section-title">Inicie seu Projeto</h2>
-      <p class="section-subtitle">Vamos construir algo extraordinário juntos</p>
+      <h2 class="section-title">Orçamento</h2>
+      <p class="section-subtitle">Envie os detalhes — você recebe retorno rápido</p>
 
-      <div class="contact-layout reveal">
+      <div class="contact-wrap reveal">
         <div class="contact-info">
-          <h3>Entre em Contato</h3>
+          <h3>Contato</h3>
 
           <div class="info-item">
-            <i class="fas fa-envelope"></i>
+            <i class="fa-solid fa-envelope"></i>
             <span>jdbsites1@gmail.com</span>
           </div>
 
           <div class="info-item">
-            <i class="fab fa-whatsapp"></i>
+            <i class="fa-brands fa-whatsapp"></i>
             <span>+55 41 98901-7944</span>
           </div>
 
           <div class="info-item">
-            <i class="fas fa-map-marker-alt"></i>
-            <span>Curitiba - PR, Brasil</span>
+            <i class="fa-solid fa-location-dot"></i>
+            <span>Curitiba - PR</span>
           </div>
 
-          <p style="margin-top: 30px; color: var(--text-muted);">
-            Pronto para levar seu negócio para o próximo nível? Preencha o formulário com os detalhes do seu projeto e retornaremos em até 24 horas.
+          <p style="margin-top:16px;color:var(--text-muted)">
+            Preencha o formulário e sua solicitação chegará por e-mail automaticamente (Formspree).
           </p>
         </div>
 
-        <form id="quoteForm">
+        <!-- FORM (Formspree real) -->
+        <form id="quoteForm" action="https://formspree.io/f/xpqlqryd" method="POST">
           <div class="form-group">
-            <label for="fullname">Nome Completo *</label>
-            <input type="text" id="fullname" class="form-control" required placeholder="Seu nome" />
+            <label for="fullname">Nome completo *</label>
+            <input class="form-control" id="fullname" name="fullname" type="text" required placeholder="Seu nome" />
           </div>
 
           <div class="form-group">
-            <label for="business">Nome da Empresa</label>
-            <input type="text" id="business" class="form-control" placeholder="Sua empresa" />
+            <label for="business">Empresa</label>
+            <input class="form-control" id="business" name="business" type="text" placeholder="Nome da empresa" />
           </div>
 
           <div class="form-group">
             <label for="email">E-mail *</label>
-            <input type="email" id="email" class="form-control" required placeholder="email@exemplo.com" />
+            <input class="form-control" id="email" name="email" type="email" required placeholder="email@exemplo.com" />
           </div>
 
           <div class="form-group">
             <label for="phone">WhatsApp / Telefone *</label>
-            <input type="tel" id="phone" class="form-control" required placeholder="+55 41..." />
+            <input class="form-control" id="phone" name="phone" type="tel" required placeholder="+55 41 ..." />
           </div>
 
           <div class="form-group">
-            <label for="type">Tipo de Site *</label>
-            <select id="type" class="form-control" required>
+            <label for="type">Tipo de site *</label>
+            <select class="form-control" id="type" name="type" required>
               <option value="" disabled selected>Selecione uma opção</option>
               <option value="Landing Page">Landing Page</option>
-              <option value="Institutional">Institucional</option>
-              <option value="E-commerce">E-commerce</option>
-              <option value="Other">Outro</option>
+              <option value="Institucional">Institucional</option>
+              <option value="Loja virtual">Loja virtual</option>
+              <option value="Outro">Outro</option>
             </select>
           </div>
 
           <div class="form-group">
-            <label for="deadline">Prazo Estimado</label>
-            <select id="deadline" class="form-control">
-              <option value="ASAP">O mais breve possível</option>
-              <option value="1 month">1 mês</option>
-              <option value="3 months">3 meses</option>
-              <option value="Flexible">Flexível</option>
+            <label for="deadline">Prazo</label>
+            <select class="form-control" id="deadline" name="deadline">
+              <option value="O mais breve possível">O mais breve possível</option>
+              <option value="1 mês">1 mês</option>
+              <option value="3 meses">3 meses</option>
+              <option value="Flexível">Flexível</option>
             </select>
           </div>
 
           <div class="form-group">
-            <label for="budget">Faixa de Orçamento</label>
-            <select id="budget" class="form-control">
-              <option value="Low">Abaixo de R$ 2.000</option>
-              <option value="Medium">R$ 2.000 - R$ 5.000</option>
-              <option value="High">Acima de R$ 5.000</option>
+            <label for="budget">Orçamento</label>
+            <select class="form-control" id="budget" name="budget">
+              <option value="Abaixo de R$ 2.000">Abaixo de R$ 2.000</option>
+              <option value="R$ 2.000 - R$ 5.000">R$ 2.000 - R$ 5.000</option>
+              <option value="Acima de R$ 5.000">Acima de R$ 5.000</option>
             </select>
           </div>
 
           <div class="form-group">
-            <label for="message">Descrição / Requisitos *</label>
-            <textarea id="message" class="form-control" required placeholder="Conte-nos sobre os objetivos do seu projeto..."></textarea>
+            <label for="message">Mensagem *</label>
+            <textarea class="form-control" id="message" name="message" required placeholder="Descreva seu projeto, referências e objetivo..."></textarea>
           </div>
 
-          <button type="submit" class="btn btn-primary" style="width: 100%;">Enviar Solicitação</button>
+          <!-- assunto -->
+          <input type="hidden" name="_subject" value="Novo orçamento - JDB SITES" />
+          <!-- anti-spam -->
+          <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
+
+          <button class="btn btn-primary" type="submit" style="width:100%">
+            <i class="fa-solid fa-paper-plane"></i> Enviar solicitação
+          </button>
         </form>
       </div>
     </div>
   </section>
 
-  <!-- Rodapé -->
+  <!-- FOOTER -->
   <footer>
     <div class="container">
-      <a href="#hero" class="logo footer-logo">JDB <span>SITES</span></a>
-      <div class="social-links">
-        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+      <div class="logo" style="display:inline-block;margin-bottom:10px">JDB <span>SITES</span></div>
+
+      <div class="social" aria-label="Redes sociais" style="margin:10px 0 0">
+        <a href="https://github.com/jdb8648486" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        <a href="#contact" aria-label="Contato"><i class="fa-solid fa-envelope"></i></a>
+        <a href="https://wa.me/5541989017944?text=Ol%C3%A1!%20Quero%20um%20or%C3%A7amento%20para%20um%20site." target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
       </div>
-      <p class="copyright">&copy; 2023 JDB SITES. Todos os direitos reservados. Curitiba - PR.</p>
+
+      <div class="copyright">
+        © 2026 JDB SITES — Curitiba • PR
+      </div>
     </div>
   </footer>
 
-  <!-- ✅ WhatsApp flutuante -->
-  <a
-    href="https://wa.me/5541989017944"
-    class="whatsapp-float"
-    target="_blank"
-    rel="noopener"
-    aria-label="Fale conosco no WhatsApp"
-  >
-    <i class="fab fa-whatsapp"></i>
+  <!-- WhatsApp Float -->
+  <a class="whatsapp-float" target="_blank" rel="noopener"
+     href="https://wa.me/5541989017944?text=Ol%C3%A1!%20Quero%20um%20or%C3%A7amento%20para%20um%20site."
+     aria-label="Fale no WhatsApp">
+    <i class="fa-brands fa-whatsapp"></i>
   </a>
 
-  <!-- Modal -->
+  <!-- MODAL -->
   <div id="portfolioModal" class="modal" aria-hidden="true">
-    <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-      <span class="close-modal" role="button" aria-label="Fechar Modal">&times;</span>
-      <h2 id="modalTitle" style="color: var(--primary-cyan); margin-bottom: 10px;"></h2>
-      <p id="modalDesc" style="color: #ddd; margin-bottom: 20px;"></p>
-      <div id="modalTags" class="chips" style="margin-bottom: 20px;"></div>
-      <a href="#contact" id="modalContactBtn" class="btn btn-primary">Solicitar Site Semelhante</a>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-close" id="closeModalBtn" aria-label="Fechar">&times;</div>
+      <h3 id="modalTitle" style="font-family:var(--font-headings);color:var(--primary-cyan);margin-bottom:8px"></h3>
+      <p id="modalDesc" style="color:#ddd;margin-bottom:14px"></p>
+      <div id="modalTags" class="chips" style="margin-bottom:16px"></div>
+      <a href="#contact" class="btn btn-primary" id="modalCta">Quero um igual</a>
     </div>
   </div>
 
-  <!-- Toast -->
-  <div id="toast">Solicitação enviada com sucesso! Entraremos em contato em breve.</div>
+  <!-- TOAST -->
+  <div id="toast">Enviado com sucesso!</div>
 
   <script defer>
-    // MENU MOBILE
+    // ===== MENU MOBILE =====
     const mobileMenuBtn = document.getElementById('mobile-menu');
     const navLinks = document.getElementById('nav-links');
-    const navLinksItems = document.querySelectorAll('.nav-links a');
 
     if (mobileMenuBtn && navLinks) {
       mobileMenuBtn.addEventListener('click', () => {
         navLinks.classList.toggle('active');
       });
 
-      navLinksItems.forEach(link => {
-        link.addEventListener('click', () => {
+      navLinks.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', () => {
           if (window.innerWidth <= 768) navLinks.classList.remove('active');
         });
       });
     }
 
-    // MODAL PORTFÓLIO
-    const modal = document.getElementById('portfolioModal');
-    const closeModalBtn = document.querySelector('.close-modal');
-    const modalTitle = document.getElementById('modalTitle');
-    const modalDesc = document.getElementById('modalDesc');
-    const modalTags = document.getElementById('modalTags');
-    const modalContactBtn = document.getElementById('modalContactBtn');
-    const detailBtns = document.querySelectorAll('.open-modal-btn');
-
-    const openModal = (card) => {
-      if (!modal || !card) return;
-
-      const titleElement = card.querySelector('h4');
-      const descElement = card.querySelector('p');
-      const chips = card.querySelectorAll('.chip');
-
-      modalTitle.textContent = titleElement ? titleElement.textContent : '';
-      modalDesc.textContent = descElement ? descElement.textContent : '';
-
-      modalTags.innerHTML = '';
-      chips.forEach(chip => {
-        const span = document.createElement('span');
-        span.className = 'chip';
-        span.textContent = chip.textContent;
-        modalTags.appendChild(span);
-      });
-
-      modal.style.display = 'block';
-      modal.setAttribute('aria-hidden', 'false');
-      document.body.style.overflow = 'hidden';
-    };
-
-    const closeModal = () => {
-      if (!modal) return;
-      modal.style.display = 'none';
-      modal.setAttribute('aria-hidden', 'true');
-      document.body.style.overflow = '';
-    };
-
-    detailBtns.forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        e.preventDefault();
-        const card = btn.closest('.portfolio-card');
-        openModal(card);
-      });
-    });
-
-    if (closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
-
-    window.addEventListener('click', (event) => {
-      if (event.target === modal) closeModal();
-    });
-
-    window.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape') closeModal();
-    });
-
-    if (modalContactBtn) {
-      modalContactBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        closeModal();
-        const contact = document.getElementById('contact');
-        if (contact) contact.scrollIntoView({ behavior: 'smooth' });
-      });
-    }
-
-    // SCROLL REVEAL
+    // ===== SCROLL REVEAL =====
     function reveal() {
       const reveals = document.querySelectorAll('.reveal');
       const windowHeight = window.innerHeight;
-      const elementVisible = 150;
+      const visible = 140;
 
       reveals.forEach(el => {
-        const elementTop = el.getBoundingClientRect().top;
-        if (elementTop < windowHeight - elementVisible) el.classList.add('active');
+        const top = el.getBoundingClientRect().top;
+        if (top < windowHeight - visible) el.classList.add('active');
       });
     }
     window.addEventListener('scroll', reveal);
     reveal();
 
-    // FORM + TOAST
+    // ===== PORTFOLIO MODAL =====
+    const modal = document.getElementById('portfolioModal');
+    const closeModalBtn = document.getElementById('closeModalBtn');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalDesc = document.getElementById('modalDesc');
+    const modalTags = document.getElementById('modalTags');
+    const modalCta = document.getElementById('modalCta');
+
+    function openModal(card){
+      const title = card.querySelector('h4')?.textContent || '';
+      const desc = card.querySelector('p')?.textContent || '';
+      const chips = card.querySelectorAll('.chip');
+
+      modalTitle.textContent = title;
+      modalDesc.textContent = desc;
+      modalTags.innerHTML = '';
+
+      chips.forEach(ch => {
+        const s = document.createElement('span');
+        s.className = 'chip';
+        s.textContent = ch.textContent;
+        modalTags.appendChild(s);
+      });
+
+      modal.style.display = 'block';
+      modal.setAttribute('aria-hidden','false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal(){
+      modal.style.display = 'none';
+      modal.setAttribute('aria-hidden','true');
+      document.body.style.overflow = '';
+    }
+
+    document.querySelectorAll('.open-modal-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const card = btn.closest('.portfolio-card');
+        if (card) openModal(card);
+      });
+    });
+
+    closeModalBtn?.addEventListener('click', closeModal);
+    window.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+    window.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+
+    modalCta?.addEventListener('click', (e) => {
+      e.preventDefault();
+      closeModal();
+      document.getElementById('contact')?.scrollIntoView({behavior:'smooth'});
+    });
+
+    // ===== FORM (FORMSPREE) + TOAST =====
     const form = document.getElementById('quoteForm');
     const toast = document.getElementById('toast');
 
-    if (form && toast) {
-      form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        toast.className = "show";
-        form.reset();
+    function showToast(message){
+      if (!toast) return;
+      toast.textContent = message;
+      toast.className = 'show';
+      setTimeout(() => toast.className = toast.className.replace('show',''), 3000);
+    }
 
-        setTimeout(() => {
-          toast.className = toast.className.replace("show", "");
-        }, 3000);
+    if (form) {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const btn = form.querySelector('button[type="submit"]');
+        const oldText = btn ? btn.innerHTML : '';
+        if (btn) { btn.disabled = true; btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Enviando...'; }
+
+        try {
+          const fd = new FormData(form);
+          const res = await fetch(form.action, {
+            method: 'POST',
+            body: fd,
+            headers: { 'Accept': 'application/json' }
+          });
+
+          if (res.ok) {
+            showToast('Enviado com sucesso! Vamos te chamar em breve.');
+            form.reset();
+          } else {
+            showToast('Não foi possível enviar. Tente novamente.');
+          }
+        } catch {
+          showToast('Erro de conexão. Tente novamente.');
+        } finally {
+          if (btn) { btn.disabled = false; btn.innerHTML = oldText; }
+        }
       });
     }
   </script>
-  <script>
-  (function () {
-    const btn = document.getElementById("whatsBtn");
-    if (!btn) return;
-
-    const phone = "5541989017944";
-    const text = "Olá! Quero um orçamento.";
-    const webUrl = `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
-    const appUrl = `whatsapp://send?phone=${phone}&text=${encodeURIComponent(text)}`;
-
-    btn.addEventListener("click", function (e) {
-      // tenta abrir o app
-      e.preventDefault();
-
-      // tentativa no app (pode falhar em alguns navegadores)
-      window.location.href = appUrl;
-
-      // fallback web após um pequeno atraso
-      setTimeout(() => {
-        window.open(webUrl, "_blank");
-      }, 500);
-    });
-  })();
-</script>
 </body>
 </html>
