@@ -28,7 +28,7 @@ Este projeto é um site futurista para venda de serviços de desenvolvimento web
 ## 📂 Estrutura de Pastas
 
 
-├─ index.html/css
+├─ index.html
 
 
 
